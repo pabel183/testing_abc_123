@@ -1,0 +1,35 @@
+name: Basic Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Person to great"
+        default: "World"
+        required: true
+        type: string
+
+      city:
+        description: "Favorite city"
+        required: true
+        default: "Tuple"
+        type: choice
+        options:
+          - New Yeork
+          - Seattle
+          - Tuple
+      fav-color-blue:
+        description: "Is your favourite color blue"
+        required: true
+        type: boolean
+jobs:
+  great:
+    name: "Greating Program!"
+    runs-on: 
+      - ubuntu-latest
+    steps:
+      - name: Send greating 
+        run: |
+          echo "Hello ${{github.event.inputs.name}}"
+          echo "Your favourite city is ${{github.event.inputs.city}}"
+          echo "Is your favourite color blue: ${{github.event.inputs.fav-color-blue}}"
